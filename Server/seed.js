@@ -19,7 +19,7 @@ module.exports= {
             DROP TABLE IF EXISTS employee;
 
             CREATE TABLE user(
-                id SERIAL PRIMARY KEY,
+                user_id SERIAL PRIMARY KEY,
                 first_name VARCHAR(35) NOT NULL,
                 last_name VARCHAR(35) NOT NULL,
                 user_name VARCHAR(35),
@@ -28,10 +28,11 @@ module.exports= {
             );
 
             CREATE TABLE employee (
-                id SERIAL PRIMARY KEY,
+                employee_id SERIAL PRIMARY KEY,
                 first_name VARCHAR(35) NOT NULL,
                 last_name VARCHAR(35) NOT NULL,
-                hourly_wage FLOAT(15) NOT NULL
+                hourly_wage FLOAT(15) NOT NULL,
+                user_id REFERENCES user(user_id)
             );
 
             CREATE TABLE subscribers (
