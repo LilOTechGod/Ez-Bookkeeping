@@ -1,44 +1,70 @@
 const bcrypt = require('bcrypt');
-const users = []
+const Sequelize = require('sequelize');
+require('dotenv').config()
+const {CONNECTION_STRING} = process.env
+
+
+const sequelize = new Sequelize(CONNECTION_STRING, {
+  dialect:'postgres',
+  dialectOptions: {
+      ssl: {
+          rejectUnauthorized: false
+      }
+  }
+})
 
 module.exports = {
-    login: (req, res) => {
-      console.log('Logging In User')
-      console.log(req.body)
-      const { username, password } = req.body
-
-      for (let i = 0; i < users.length; i++) {
-        if (users[i].username === username) {
-          bcrypt.compare(password, users[i].password, (err, result) => {
-            if(!err) {
-              if(result) {
-                res.status(200).send(users[i])
-                return
-              }
-            }else {
-              res.status(400).send('invalid password')
-            }
-            console.log(req.body);
-          })
+  register: (req, res) => {
+    const {firstName, lastName, userName, email, password} = req.body
+    sequelize.query(`
+      SELECT*FROM users WHERE email = '${email}'
+    `)
+      .then(dbRes => {
+        // console.log(dbRes[0])
+        if(dbRes[0][0]) {
+          return res.status(400).send('Another account with the same email was found, try signing up with another email (:')
         }else {
-          res.status(400).send("User not found.")
+          // console.log(password);
+          let salt = bcrypt.genSaltSync(10);
+          const passHash = bcrypt.hashSync(password, salt)
+          // console.log(passHash);
+          sequelize.query(`
+          INSERT INTO users(first_name,last_name,user_name,email,password) VALUES('${firstName}', '${lastName}', '${userName}', '${email}', '${passHash}');
+          SELECT*FROM users WHERE email = '${email}';
+          `) 
+          .then(resDb => {
+            // console.log(resDb[0])
+            console.log('New user created!')
+            return res.status(200).send('New user created!')
+          }) 
+          .catch(err => console.error(err))
         }
-      }
-    },
-    register: (req, res) => {
-        console.log('Registering User')
-        // console.log(req.body)
-        // users.push(req.body)
-        let {password} = req.body;
-        const saltRounds = 10;
+      })
+      .catch(err => console.error(err))
+},
+    login: (req, res) => {
+      const { email, password } = req.body
 
-        // what i am hashing plus rounds
-        bcrypt.hash(password, saltRounds, (err, hashedPassword) => {
-          req.body.password = hashedPassword;
-          // password = hashedPassword
-          console.log(req.body);
-          users.push(req.body);
-        })
-        res.status(200).send(req.body);
-    }
+     sequelize.query(`
+     SELECT*FROM users WHERE email = '${email}'
+     `)
+     .then(dbRes => {
+      if(!dbRes[0][0]) {
+        console.log('Email not found, try entering an existing email associated with your account or sign up!');
+        res.status(404).send('Email not found, try entering an existing email associated with your account or sign up!')
+        return
+      }
+      // console.log(dbRes[0][0])
+      const isValid = bcrypt.compareSync(password, dbRes[0][0].password)
+      if(!isValid) {
+        console.log('Incorrect password, please try again!');
+        res.status(404).send('Incorrect password, please try again!')
+        return
+      }
+      console.log('You have been logged in successfully!')
+      res.status(200).send('You have been logged in successfully!')
+      return
+     })
+     .catch(err => console.error(err))
+}
 }
