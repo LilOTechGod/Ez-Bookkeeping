@@ -16,8 +16,7 @@ module.exports = {
     seed: (req, res) => {
         sequelize.query(`
 
-            DROP TABLE IF EXISTS users;
-            DROP TABLE IF EXISTS employee;
+         
 
             CREATE TABLE users (
                 users_id SERIAL PRIMARY KEY,
