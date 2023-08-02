@@ -6,7 +6,7 @@ const {SERVER_PORT} = process.env
 const {seed} = require('./seed.js')
 const bcrypt = require('bcrypt');
 
-const {getAllEmployee, addAEmployee,updateEmployee,deleteEmployee} = require('./controllers/controllers.js')
+const {getAllEmployee, addAEmployee,updateEmployee,deleteEmployee, getAllPayroll} = require('./controllers/controllers.js')
 const {login, register} = require('./controllers/auth')
 
 
@@ -18,7 +18,9 @@ app.post('/seed', seed)
 app.post(`/login`, login)
 app.post(`/register`, register)
 app.get('/home', getAllEmployee)
+app.get('/pay', getAllPayroll)
 app.post('/newemployee', addAEmployee)
+app.post('/new')
 app.put('/employee/:id', updateEmployee)
 // app.delete('/deleteEmployee/:id', deleteEmployee)
 

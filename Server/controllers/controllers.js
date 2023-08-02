@@ -22,25 +22,42 @@ module.exports = {
         })
     },
 
-    addAEmployee:(req,res) => {
-        const {userId, firstName, lastName, hourlyWage} = req.body
+    getAllPayroll:(req, res) => {
         sequelize.query(`
-        INSERT INTO employee(users_id,first_name,last_name,hourly_wage) VALUES (${userId},'${firstName}','${lastName}',${hourlyWage});
+        SELECT*FROM payout;
+    `)
+    .then(dbRes => {
+        console.log('paid employee')
+        return res.status(200).send(dbRes[0])
+    })
+    },
+
+    addAEmployee:(req,res) => {
+        const {userId, firstName, lastName} = req.body
+        sequelize.query(`
+        INSERT INTO employee(managers_id,first_name,last_name) VALUES (${userId},'${firstName}','${lastName}');
         `)
         .then(dbRes => {
             console.log("You've added a new employee!")
-            return res.status(200).send("You've added a new employee!")
+            return res.status(200).send(dbRes[0])
         })
     },
 
     updateEmployee:(req,res) => {
-        let {hourlyWage} =req.body
+        let {id} = req.params
+        let {userId, firstName, lastName, hourlyWage} = req.body
         sequelize.query(`
             UPDATE employee set
-            hourly_wage=${hourlyWage},
-            WHERE users_id=${userId}
+            users_id = ${userId},
+            first_name = '${firstName}',
+            last_name = '${lastName}',
+            hourly_wage = ${hourlyWage},
+            WHERE employee_id = ${id};
         `)
-        .then()
-        .catch()
+        .then(dbRes => {
+            console.log("You've successfully updated an employee");
+            return res.status(200).send("You've successfully updated an employee")
+        })
+        .catch(err => console.error(err))
     }
 }
