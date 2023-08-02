@@ -14,7 +14,8 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
 module.exports = {
     getAllEmployee:(req, res) => {
         sequelize.query(`
-            SELECT*FROM employee;
+            SELECT*FROM employee
+            ORDER BY first_name;
         `)
         .then(dbRes => {
             console.log('Fetched all employees')
@@ -24,7 +25,8 @@ module.exports = {
 
     getAllPayroll:(req, res) => {
         sequelize.query(`
-        SELECT*FROM payout;
+        SELECT*FROM payout
+        ORDER BY gross_pay desc;
     `)
     .then(dbRes => {
         console.log('paid employee')
@@ -33,9 +35,10 @@ module.exports = {
     },
 
     addAEmployee:(req,res) => {
-        const {userId, firstName, lastName} = req.body
+        const {managerId, firstName, lastName} = req.body
         sequelize.query(`
-        INSERT INTO employee(managers_id,first_name,last_name) VALUES (${userId},'${firstName}','${lastName}');
+        INSERT INTO employee(managers_id,first_name,last_name) VALUES (${managerId},'${firstName}','${lastName}')
+        returning *;
         `)
         .then(dbRes => {
             console.log("You've added a new employee!")
@@ -43,20 +46,79 @@ module.exports = {
         })
     },
 
+    addPayroll:(req,res) => {
+        const {employeeId, hourlyWage, hoursWorked} = req.body
+        sequelize.query(`
+        INSERT INTO payout(employee_id, hourly_wage, hours_worked) VALUES (${employeeId},${hourlyWage},${hoursWorked})
+        returning *;
+        `)
+        .then(dbRes => {
+            console.log("You've added a new payroll for an employee!")
+            return res.status(200).send(dbRes[0])
+        })
+    },
+
     updateEmployee:(req,res) => {
         let {id} = req.params
-        let {userId, firstName, lastName, hourlyWage} = req.body
+        let {managerId, firstName, lastName} = req.body
         sequelize.query(`
             UPDATE employee set
-            users_id = ${userId},
+            managers_id = ${managerId},
             first_name = '${firstName}',
-            last_name = '${lastName}',
-            hourly_wage = ${hourlyWage},
-            WHERE employee_id = ${id};
+            last_name = '${lastName}'
+            WHERE employee_id = ${id}
+            returning *;
         `)
         .then(dbRes => {
             console.log("You've successfully updated an employee");
-            return res.status(200).send("You've successfully updated an employee")
+            return res.status(200).send(dbRes[0])
+        })
+        .catch(err => console.error(err))
+    },
+
+    updatePayroll:(req,res) => {
+        let {id} = req.params
+        let {hoursWorked, hourlyWage } = req.body
+        sequelize.query(`
+            UPDATE payout set
+            hourly_wage = ${hourlyWage},
+            hours_worked = ${hoursWorked}
+            WHERE id = ${id}
+            returning *;
+        `)
+        .then(dbRes => {
+            console.log("You've successfully updated an employees payroll");
+            return res.status(200).send(dbRes[0])
+        })
+        .catch(err => console.error(err))
+    },
+
+    deleteEmployee:(req, res) => {
+        const {id} = req.params
+        
+        sequelize.query(`
+            DELETE FROM employee
+            WHERE employee_id = ${id}
+            returning *;
+        `)
+        .then(dbRes => {
+            console.log("You've successfully deleted an employee");
+            return res.status(200).send(dbRes[0])
+        })
+        .catch(err => console.error(err))
+    }, 
+
+    deleteEmployeePayroll:(req, res) => {
+        const {id} = req.params
+        
+        sequelize.query(`
+            DELETE FROM payout
+            WHERE id = ${id}
+            returning *;
+        `)
+        .then(dbRes => {
+            console.log("You've successfully deleted an employees payroll");
+            return res.status(200).send(dbRes[0])
         })
         .catch(err => console.error(err))
     }
