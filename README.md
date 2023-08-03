@@ -7,3 +7,6 @@
 6. Users will be able to insert how many hours employee worked for the week.
 7. The total weekly pay for that employee will be shown after entering how many hours worked.
  
+
+ project includes a list of MVP features *
+ mvp
