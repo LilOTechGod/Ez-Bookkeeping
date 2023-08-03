@@ -22,7 +22,8 @@ module.exports = {
       .then(dbRes => {
         // console.log(dbRes[0])
         if(dbRes[0][0]) {
-          return res.status(400).send('Another account with the same email was found, try signing up with another email (:')
+          console.log('Another account with the same email was found, try signing up with another email (:')
+          return res.status(400).send(dbRes[0][0])
         }else {
           // console.log(password);
           let salt = bcrypt.genSaltSync(10);
@@ -35,7 +36,7 @@ module.exports = {
           .then(resDb => {
             // console.log(resDb[0])
             console.log('New user created!')
-            return res.status(200).send('New user created!')
+            return res.status(200).send(resDb[0])
           }) 
           .catch(err => console.error(err))
         }
@@ -51,18 +52,18 @@ module.exports = {
      .then(dbRes => {
       if(!dbRes[0][0]) {
         console.log('Email not found, try entering an existing email associated with your account or sign up!');
-        res.status(404).send('Email not found, try entering an existing email associated with your account or sign up!')
+        res.status(404).send(dbRes[0][0])
         return
       }
       // console.log(dbRes[0][0])
       const isValid = bcrypt.compareSync(password, dbRes[0][0].password)
       if(!isValid) {
         console.log('Incorrect password, please try again!');
-        res.status(404).send('Incorrect password, please try again!')
+        res.status(404).send(dbRes[0][0])
         return
       }
       console.log('You have been logged in successfully!')
-      res.status(200).send('You have been logged in successfully!')
+      res.status(200).send(dbRes[0][0])
       return
      })
      .catch(err => console.error(err))

@@ -12,6 +12,17 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
 })
 
 module.exports = {
+    getAllManagers:(req,res) => {
+        sequelize.query(`
+            SELECT*FROM users;
+        `)
+        .then(dbRes => {
+            console.log('Fetched all managers')
+            return res.status(200).send(dbRes[0])
+        })
+        .catch(err => console.error(err))
+    },
+
     getAllEmployee:(req, res) => {
         sequelize.query(`
             SELECT*FROM employee
@@ -21,6 +32,7 @@ module.exports = {
             console.log('Fetched all employees')
             return res.status(200).send(dbRes[0])
         })
+        .catch(err => console.error(err))
     },
 
     getAllPayroll:(req, res) => {
@@ -28,10 +40,11 @@ module.exports = {
         SELECT*FROM payout
         ORDER BY gross_pay desc;
     `)
-    .then(dbRes => {
+        .then(dbRes => {
         console.log('paid employee')
         return res.status(200).send(dbRes[0])
-    })
+         })
+        .catch(err => console.error(err))
     },
 
     addAEmployee:(req,res) => {
@@ -44,6 +57,7 @@ module.exports = {
             console.log("You've added a new employee!")
             return res.status(200).send(dbRes[0])
         })
+        .catch(err => console.error(err))
     },
 
     addPayroll:(req,res) => {
@@ -56,6 +70,7 @@ module.exports = {
             console.log("You've added a new payroll for an employee!")
             return res.status(200).send(dbRes[0])
         })
+        .catch(err => console.error(err))
     },
 
     updateEmployee:(req,res) => {

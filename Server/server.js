@@ -6,7 +6,7 @@ const {SERVER_PORT} = process.env
 const {seed} = require('./seed.js')
 const bcrypt = require('bcrypt');
 
-const {getAllEmployee, getAllPayroll, addAEmployee, addPayroll,updateEmployee, updatePayroll, deleteEmployee, deleteEmployeePayroll} = require('./controllers/controllers.js')
+const {getAllManagers, getAllEmployee, getAllPayroll, addAEmployee, addPayroll,updateEmployee, updatePayroll, deleteEmployee, deleteEmployeePayroll} = require('./controllers/controllers.js')
 const {login, register} = require('./controllers/auth')
 
 
@@ -17,6 +17,7 @@ app.use(cors());
 app.post('/seed', seed)
 app.post(`/login`, login)
 app.post(`/register`, register)
+app.get('/managers', getAllManagers)
 app.get('/home', getAllEmployee)
 app.get('/pay', getAllPayroll)
 app.post('/newemployee', addAEmployee)
