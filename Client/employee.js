@@ -7,6 +7,9 @@ const addEmployeeBtn = document.getElementById('empSubmit')
 const managerInput = document.getElementById('managersId');
 const firstInput = document.getElementById('firstName');
 const lastInput = document.getElementById('lastName');
+// delete btn id
+// const deleteEmpBtn = document.getElementById('deleteBtn');
+
 
 
 // function to create a row in my table with the correct employee data
@@ -16,12 +19,34 @@ const tableRow = (row) => {
     employeeData.innerHTML = `
         <th scope="row">${row.employee_id}</th>
         <th>${row.managers_id}</th>
-        <th>${row.first_name}</th>
-        <th>${row.last_name}</th>`
+        <th id="editFirstName" onclick="editName(this,${row.employee_id})">${row.first_name}</th>
+        <th>${row.last_name}<button onclick="deleteEmp(${row.employee_id})"><i class="bi bi-trash3-fill"></i></button></th>`
 
 
     tableBody.appendChild(employeeData)
 }
+
+
+const editElement = (element, id) => {
+    console.log(element.value)
+
+    axios.put(`${baseurl}/employee/${id}`)
+
+}
+
+
+function editName(elem,id) {
+    const th = document.createElement('th');
+    console.log(elem)
+    
+    th.innerHTML= `
+    <input placeholder='New Name' type=''><button onclick="editElement(this.previousSibling,${id})">GO</button></input>`
+    elem.replaceWith(th)
+}
+
+
+
+
 
 // function to clear all rows incase manager makes an edit or deletes or adds a new employee
 function clearEmployee() {
@@ -57,7 +82,6 @@ let addAEmployee = (e) => {
     // console.log(managerInput, firstInput, lastInput);
     axios.post(`${baseurl}/newemployee`, body)
     .then(res => {
-        tableRow(res.data)
         getEmployees();
         console.log(res.data);
     })
@@ -68,5 +92,17 @@ let addAEmployee = (e) => {
     lastInput.value = ''
 };
 
+
+// functions that deletes a employee
+const deleteEmp = (id) => {
+    axios.delete(`${baseurl}/deleteemployee/${id}`)
+    .then(res => {
+        getEmployees();
+        console.log(res.data)
+        })
+    .catch(err => console.error(err))
+}
+
 document.addEventListener("DOMContentLoaded", getEmployees);
-addEmployeeBtn.addEventListener('click', addAEmployee)
+addEmployeeBtn.addEventListener('click', addAEmployee);
+// deleteEmpBtn.addEventListener('click', deleteEmp);

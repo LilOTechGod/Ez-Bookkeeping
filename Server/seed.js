@@ -31,7 +31,7 @@ module.exports = {
 
             CREATE TABLE employee (
                 employee_id SERIAL PRIMARY KEY,
-                managers_id INTEGER REFERENCES users(users_id),
+                managers_id INTEGER REFERENCES users(users_id) ON DELETE CASCADE,
                 first_name VARCHAR(35) NOT NULL,
                 last_name VARCHAR(35) NOT NULL
             );
@@ -44,7 +44,7 @@ module.exports = {
 
             CREATE TABLE payout (
                 id SERIAL PRIMARY KEY,
-                employee_id INTEGER REFERENCES employee(employee_id),
+                employee_id INTEGER REFERENCES employee(employee_id) ON DELETE CASCADE,
                 hourly_wage NUMERIC NOT NULL,
                 hours_worked NUMERIC NOT NULL,
                 timestamp timestamp default current_timestamp,
