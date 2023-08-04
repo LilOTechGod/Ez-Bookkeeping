@@ -1,63 +1,73 @@
+// Grabbed all of the elements needed for add event listeners
 const signUpBtn = document.getElementById('signUpBtn');
+const passwordSignUp = document.getElementById('passwordSignUp');
+const emailSignUp = document.getElementById('emailSignUp');
+const email = document.getElementById('email')
+const password = document.getElementById('password');
+const authLogIn = document.getElementById('logInBtn');
+const firstName = document.getElementById('firstName');
+const lastName = document.getElementById('lastName');
+const userName = document.getElementById('userName');
+// baseUrl so that i wouldn't type out the whole url every time
 const baseurl = 'http://localhost:4444'
 
+
+// axios request to /login endpoint so that cb function in auth could login in a user/manager
 const login = (body) => axios.post(`${baseurl}/login`, body)
+.then((res) => {
+    console.log(res.data);
+    
+    window.alert("Welcome, You've been successfully logged in!");
+    window.location.href = './landingPage.html';
+})
+.catch(err => console.error(err)); 
+
+
+
+// axios request to /register endpoint so that cb function in auth could register a new user/manager
+const signUp = (body) => axios.post(`${baseurl}/register`, body)
     .then((res) => {
         console.log(res.data);
-        
-        window.alert("Welcome, You've been successfully logged in!");
-        window.location.href = './landingPage.html';
-    })
-    .catch(err => console.error(err)); 
 
-const signUp = (body) => axios.post(`${baseurl}/register`, body)
-    .then(async(res) => {
-        console.log(res.data);
-
-        window.prompt('Log in to get started!')
-        window.location.href = '/';
+        window.alert('Log in to get started!')
     })
     .catch(err => console.error(err)); 
 
 
-    const handleAuth = (authType, body) => {
-        authType === "SignUp" ? signUp(body) : login(body);
-      };
-
-
-    signUpBtn.addEventListener('submit', signUp);
-
-
-    const email = document.getElementById('email')
-    const password = document.getElementById('password');
-    const authLogIn = document.getElementById('logInBtn');
-    const firstName = document.getElementById('firstName');
-    const lastName = document.getElementById('lastName');
-    const userName = document.getElementById('userName');
-
-    authLogIn.addEventListener('click', (e) => {
+// addeventlistener to the sign up button on the front end, once clicked and if all fields are filled then send input data to backend then run signup function with new user data as sign up body
+    signUpBtn.addEventListener('click', (e) => {
         e.preventDefault();
 
-        console.log(authLogIn.textContent)
-        if(authLogIn.textContent.trim() === 'LogIn') {
-            const loginBody = {
-                email: email.value,
-                password: password.value
-            };
-            handleAuth('Login', loginBody)
-        } else {
+        // console.log('im working');
+        if(emailSignUp && passwordSignUp && firstName && lastName && userName) {
             const signUpBody = {
                 firstName: firstName.value,
                 lastName: lastName.value,
                 userName: userName.value,
-                email: email.value,
-                password: password.value
+                email: emailSignUp.value,
+                password: passwordSignUp.value
             };
-            handleAuth('SignUp', signUpBody);
+            signUp(signUpBody);
         }
-        email.value = ''
-        password.value = ''
         firstName.value = ''
         lastName.value = ''
         userName.value = ''
+        emailSignUp.value = ''
+        passwordSignUp.value = ''
+    });
+
+// addeventlistener to the log in button on the front end, once button is clicked and if all fields have been filled. Run login function and send new user data to the backend to verify if user is successfully logged in.
+    authLogIn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        console.log(authLogIn.textContent)
+        if(email && password) {
+            const loginBody = {
+                email: email.value,
+                password: password.value
+            };
+            login(loginBody)
+        }
+        email.value = ''
+        password.value = ''
     });

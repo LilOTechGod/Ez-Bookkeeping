@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Navbar</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </header>
+    <br>
+    <br>
+    </br>
+    </br>
+    <main>
+        <!-- table starts for employees -->
+        <table class="table" id="employeeTable">
+            <thead>
+              <tr>
+                <th scope="col">Employee Id</th>
+                <th scope="col">Managers Id</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+        <!-- table ends for employee -->
+
+        <!-- add a employee modal begins -->
+        <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#signin"
+        data-bs-whatever="@login">
+        Add A New Employee
+      </button>
+    
+      <!-- Modal -->
+      <div
+        class="modal fade modal-signin"
+        id="signin"
+        tabindex="-1"
+        aria-labelledby="signinLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content rounded-4 shadow">
+            <div class="modal-header p-5 pb-4 border-bottom-0">
+              <h5 class="modal-title fw-bold mb-0" id="signinLabel">Fill Out All Fields To Add A New Employee</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close">
+            </button>
+            </div>
+            <div class="modal-body p-5 pt-0">
+              <form class="">
+                <div class="form-floating mb-3">
+                  <input
+                    type="managersId"
+                    class="form-control rounded-4"
+                    id="managersId"
+                    placeholder="1 or 2 ?"
+                  />
+                  <label for="managersId">Managers Id:</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input
+                    type="firstName"
+                    class="form-control rounded-4"
+                    id="firstName"
+                    placeholder="First Name"
+                  />
+                  <label for="firstName">First Name:</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input
+                    type="lastName"
+                    class="form-control rounded-4"
+                    id="lastName"
+                    placeholder="First Name"
+                  />
+                  <label for="lastName">Last Name:</label>
+                </div>
+                <button
+                  class="w-100 mb-2 btn btn-lg rounded-4 btn-primary"
+                  type="submit"
+                  id="empSubmit">
+                  Add Employee
+                </button>
+            </div>
+          </div>
+        </div>
+      </div>
+     
+    </main>
+    <br>
+    <br>
+    </br>
+    </br>
+    <footer>
+        <div class="card text-center">
+            <div class="card-header">
+              Featured
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+            <div class="card-footer text-body-secondary">
+              2 days ago
+            </div>
+          </div>
+    </footer>
+
+
+
+    <script src="./employee.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>
