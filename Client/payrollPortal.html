@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
 <body>
@@ -41,42 +42,85 @@
         <table class="table">
             <thead>
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Payroll Id</th>
+                <th scope="col">Employee Id</th>
+                <th scope="col">Hourly Wage</th>
+                <th scope="col">Hours Worked</th>
+                <th scope="col">Date Paid</th>
+                <th scope="col">Gross Pay</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
+             <tbody id="tableBody"></tbody>
           </table>
+          <!-- start of add a employee to payroll -->
+          <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#signin"
+          data-bs-whatever="@login">
+          Add Employee to Payroll
+        </button>
+      
+        <!-- Modal -->
+        <div
+          class="modal fade modal-signin"
+          id="signin"
+          tabindex="-1"
+          aria-labelledby="signinLabel"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content rounded-4 shadow">
+              <div class="modal-header p-5 pb-4 border-bottom-0">
+                <h5 class="modal-title fw-bold mb-0" id="signinLabel">Fill Out All Fields To Add A New Employee</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close">
+              </button>
+              </div>
+              <div class="modal-body p-5 pt-0">
+                <form class="">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="employeeId"
+                      class="form-control rounded-4"
+                      id="employeeId"
+                      placeholder="1 or 2 ?"
+                    />
+                    <label for="employeeId">Employees Id:</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="hourlyWage"
+                      class="form-control rounded-4"
+                      id="hourlyWage"
+                      placeholder="Hourly Wage"
+                    />
+                    <label for="hourlyWage">Hourly Wage:</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="hoursWorked"
+                      class="form-control rounded-4"
+                      id="hoursWorked"
+                      placeholder="Hours Worked"
+                    />
+                    <label for="hoursWorked">Hours Worked:</label>
+                  </div>
+                 
+                  <button
+                    class="w-100 mb-2 btn btn-lg rounded-4 btn-primary"
+                    type="submit"
+                    id="payrollSubmit">
+                    Add Employee
+                  </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--  -->
     </main>
     <br>
     <br>
@@ -99,6 +143,7 @@
     </footer>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./payroll.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>

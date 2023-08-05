@@ -29,8 +29,15 @@ const tableRow = (row) => {
 
 const editElement = (element, id) => {
     console.log(element.value)
+   const body = {
+    firstName: element.value
+   }
 
-    axios.put(`${baseurl}/employee/${id}`)
+    axios.put(`${baseurl}/employee/${id}`, body)
+    .then(res => {
+        console.log(res.data)
+        getEmployees()
+    })
 
 }
 
@@ -48,10 +55,6 @@ function editName(elem,id) {
 
 
 
-// function to clear all rows incase manager makes an edit or deletes or adds a new employee
-function clearEmployee() {
-    tableBody.innerHTML="";
-}
 
 // function that clears all employee rows then grabs all employees and makes a row for every single one
 let getEmployees = () => {
