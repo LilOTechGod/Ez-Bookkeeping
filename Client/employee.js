@@ -108,4 +108,4 @@ const deleteEmp = (id) => {
 
 document.addEventListener("DOMContentLoaded", getEmployees);
 addEmployeeBtn.addEventListener('click', addAEmployee);
-// deleteEmpBtn.addEventListener('click', deleteEmp);
+

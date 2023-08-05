@@ -7,6 +7,7 @@ const hourlyWageInput = document.getElementById('hourlyWage');
 const hoursWorkedInput = document.getElementById('hoursWorked');
 const addEmployeeBtn = document.getElementById('payrollSubmit');
 
+
 const tableRowCard = (row) => {
     let employeeData = document.createElement('tr')
 
@@ -14,9 +15,9 @@ const tableRowCard = (row) => {
         <th scope="row">${row.id}</th>
         <th>${row.employee_id}</th>
         <th id="editFirstName" onclick="editName(this,${row.employee_id})">${row.hourly_wage}</th>
-        <th>${row.hours_worked}<button onclick="deleteEmp(${row.employee_id})"><i class="bi bi-trash3-fill"></i></button></th>
+        <th>${row.hours_worked}</th>
         <th>${row.timestamp}</th>
-        <th>${row.gross_pay}</th>
+        <th>${row.gross_pay}<button onclick="deleteEmp(${row.employee_id})"><i class="bi bi-trash3-fill"></i></button></th>
         `
 
     tableBody.appendChild(employeeData)
@@ -64,6 +65,43 @@ const addEmployeePayroll = (e) => {
     hourlyWageInput.value = ''
     hoursWorkedInput.value = ''
 };
+
+
+
+// functions that deletes a employee
+const deleteEmp = (id) => {
+    axios.delete(`${baseurl}/deletepayroll/${id}`)
+    .then(res => {
+        getPayroll();
+        console.log(res.data)
+        })
+    .catch(err => console.error(err))
+}
+
+
+// function for onclick for the download pdf file
+function getPDF() {
+  var doc = new jsPDF();
+  // We'll make our own renderer to skip this editor
+  var specialElementHandlers = {
+    '#getPDF': function(element, renderer){
+      return true;
+    },
+    '.controls': function(element, renderer){
+      return true;
+    }
+  };
+ 
+  // All units are in the set measurement for the document
+  // This can be changed to "pt" (points), "mm" (Default), "cm", "in"
+  doc.fromHTML($('.zima').get(0), 15, 15, {
+    'width': 170,
+    'elementHandlers': specialElementHandlers
+  });
+ 
+  doc.save('Generated.pdf');
+}
+
 
 // evenlistener for rows with employees on payroll to show
 document.addEventListener('DOMContentLoaded', getPayroll);
