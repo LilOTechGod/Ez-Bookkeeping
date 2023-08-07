@@ -6,6 +6,10 @@ const employeeIdInput = document.getElementById('employeeId');
 const hourlyWageInput = document.getElementById('hourlyWage');
 const hoursWorkedInput = document.getElementById('hoursWorked');
 const addEmployeeBtn = document.getElementById('payrollSubmit');
+// variables for downloading to excel sheet
+const exportBtn = document.getElementById('export');
+// variable to download file to pdf
+const elem = document.getElementById('getPDF');
 
 
 const tableRowCard = (row) => {
@@ -17,7 +21,8 @@ const tableRowCard = (row) => {
         <th id="editFirstName" onclick="editName(this,${row.employee_id})">${row.hourly_wage}</th>
         <th>${row.hours_worked}</th>
         <th>${row.timestamp}</th>
-        <th>${row.gross_pay}<button onclick="deleteEmp(${row.employee_id})"><i class="bi bi-trash3-fill"></i></button></th>
+        <th>${row.gross_pay}</th>
+        <th><button onclick="deleteEmp(${row.employee_id})"><i class="bi bi-trash3-fill"></i></button></th>
         `
 
     tableBody.appendChild(employeeData)
@@ -79,31 +84,51 @@ const deleteEmp = (id) => {
 }
 
 
-// function for onclick for the download pdf file
-function getPDF() {
-  var doc = new jsPDF();
-  // We'll make our own renderer to skip this editor
-  var specialElementHandlers = {
-    '#getPDF': function(element, renderer){
-      return true;
+
+// function for excel sheet
+exportBtn.addEventListener('click', function() {
+    var table2excel = new Table2Excel();
+    table2excel.export(document.querySelectorAll("table"));
+})
+
+
+// function for downloading pdf file.
+elem.onclick = function () {
+var doc = new jsPDF();
+doc.autoTable({
+    html: '#payrollTable',
+    didDrawCell: function (data) {
+        if (data.column.dataKey === 5 && data.cell.section === 'body') {
+            // doc.autoTable({
+            //     head: [["One", "Two", "Three", "Four"]],
+            //     body: [
+            //         ["1", "2", "3", "4"],
+            //         ["1", "2", "3", "4"],
+            //         ["1", "2", "3", "4"],
+            //         ["1", "2", "3", "4"]
+            //     ],
+            //     startY: data.cell.y + 2,
+            //     margin: {left: data.cell.x + data.cell.padding('left')},
+            //     tableWidth: 'wrap',
+            //     theme: 'grid',
+            //     styles: {
+            //         fontSize: 7,
+            //         cellPadding: 1,
+            //     }
+            // });
+        }
     },
-    '.controls': function(element, renderer){
-      return true;
+    columnStyles: {
+        5: {cellWidth: 40}
+    },
+    bodyStyles: {
+        minCellHeight: 15
     }
-  };
- 
-  // All units are in the set measurement for the document
-  // This can be changed to "pt" (points), "mm" (Default), "cm", "in"
-  doc.fromHTML($('.zima').get(0), 15, 15, {
-    'width': 170,
-    'elementHandlers': specialElementHandlers
-  });
- 
-  doc.save('Generated.pdf');
-}
+});
+doc.save('table.pdf');
+};
 
-
-// evenlistener for rows with employees on payroll to show
+// eventlistener for rows with employees on payroll to show
 document.addEventListener('DOMContentLoaded', getPayroll);
 // eventlistener for new row when user adds a employee to payroll
 addEmployeeBtn.addEventListener('click', addEmployeePayroll);

@@ -39,7 +39,7 @@
     </br>
     </br>
     <main>
-        <table class="table zima">
+        <table class="table zima" id="payrollTable">
             <thead>
               <tr>
                 <th scope="col">Payroll Id</th>
@@ -48,6 +48,7 @@
                 <th scope="col">Hours Worked</th>
                 <th scope="col">Date Paid</th>
                 <th scope="col">Gross Pay</th>
+                <th scope="col"></th>
               </tr>
             </thead>
              <tbody id="tableBody"></tbody>
@@ -63,8 +64,11 @@
         </button>
 
         <!-- download to pdf file button -->
-        <button id="getPDF" onclick="getPDF()">Download PDF</button>
-      
+        <button class="btn btn-primary" id="getPDF">Export Pdf</button>
+
+        <!-- button for excel sheet -->
+        <button id="export">Export to excel</button>
+
         <!-- Modal -->
         <div
           class="modal fade modal-signin"
@@ -145,9 +149,10 @@
           </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js"></script>
-    <script src="jspdf.plugin.autotable.min.js"></script>
+
+    <script src="table2excel.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.2.3/jspdf.plugin.autotable.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./payroll.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>

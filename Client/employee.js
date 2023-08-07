@@ -7,9 +7,12 @@ const addEmployeeBtn = document.getElementById('empSubmit')
 const managerInput = document.getElementById('managersId');
 const firstInput = document.getElementById('firstName');
 const lastInput = document.getElementById('lastName');
-// delete btn id
-// const deleteEmpBtn = document.getElementById('deleteBtn');
-
+// variable for export to pdf button
+const elem = document.getElementById('getPDF');
+// variable for export excel button
+const exportBtn = document.getElementById('export');
+//variable for making addemployee form disappear
+const empForm = document.getElementById('signin') 
 
 
 // function to create a row in my table with the correct employee data
@@ -20,17 +23,20 @@ const tableRow = (row) => {
         <th scope="row">${row.employee_id}</th>
         <th>${row.managers_id}</th>
         <th id="editFirstName" onclick="editName(this,${row.employee_id})">${row.first_name}</th>
-        <th>${row.last_name}<button onclick="deleteEmp(${row.employee_id})"><i class="bi bi-trash3-fill"></i></button></th>`
-
+        <th>${row.last_name}</th>
+        <th><button onclick="deleteEmp(${row.employee_id})"><i class="bi bi-trash3-fill"></i></button></th>
+        `
 
     tableBody.appendChild(employeeData)
 }
 
 
 const editElement = (element, id) => {
-    console.log(element.value)
+    console.log(element.value, id)
    const body = {
-    firstName: element.value
+    managers_id,
+    firstName: element.value,
+    last_name
    }
 
     axios.put(`${baseurl}/employee/${id}`, body)
@@ -52,8 +58,10 @@ function editName(elem,id) {
 }
 
 
-
-
+// function to clear all rows incase manager makes an edit or deletes or adds a new employee
+function clearEmployee() {
+    tableBody.innerHTML="";
+}
 
 
 // function that clears all employee rows then grabs all employees and makes a row for every single one
@@ -93,6 +101,7 @@ let addAEmployee = (e) => {
     managerInput.value = ''
     firstInput.value = ''
     lastInput.value = ''
+    empForm.classList.add("formDisappear");
 };
 
 
@@ -105,6 +114,53 @@ const deleteEmp = (id) => {
         })
     .catch(err => console.error(err))
 }
+
+
+
+// function for downloading pdf file.
+elem.onclick = function () {
+    var doc = new jsPDF();
+    doc.autoTable({
+        html: '#employeeTable',
+        didDrawCell: function (data) {
+            if (data.column.dataKey === 5 && data.cell.section === 'body') {
+                // doc.autoTable({
+                //     head: [["One", "Two", "Three", "Four"]],
+                //     body: [
+                //         ["1", "2", "3", "4"],
+                //         ["1", "2", "3", "4"],
+                //         ["1", "2", "3", "4"],
+                //         ["1", "2", "3", "4"]
+                //     ],
+                //     startY: data.cell.y + 2,
+                //     margin: {left: data.cell.x + data.cell.padding('left')},
+                //     tableWidth: 'wrap',
+                //     theme: 'grid',
+                //     styles: {
+                //         fontSize: 7,
+                //         cellPadding: 1,
+                //     }
+                // });
+            }
+        },
+        columnStyles: {
+            5: {cellWidth: 40}
+        },
+        bodyStyles: {
+            minCellHeight: 15
+        }
+    });
+    doc.save('table.pdf');
+    };
+
+
+// function for excel sheet
+exportBtn.addEventListener('click', function() {
+    var table2excel = new Table2Excel();
+    table2excel.export(document.querySelectorAll("table"));
+})
+
+
 
 document.addEventListener("DOMContentLoaded", getEmployees);
 addEmployeeBtn.addEventListener('click', addAEmployee);
