@@ -155,7 +155,7 @@ elem.onclick = function () {
             minCellHeight: 15
         }
     });
-    doc.save('table.pdf');
+    doc.save('members.pdf');
     };
 
 

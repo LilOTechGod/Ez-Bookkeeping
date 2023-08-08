@@ -10,6 +10,9 @@ const addEmployeeBtn = document.getElementById('payrollSubmit');
 const exportBtn = document.getElementById('export');
 // variable to download file to pdf
 const elem = document.getElementById('getPDF');
+// variable for subscribe button
+const subBtn = document.getElementById('subBtn')
+const closeBtn = document.getElementById('closeBtn');
 
 
 const tableRowCard = (row) => {
@@ -22,7 +25,7 @@ const tableRowCard = (row) => {
         <th>${row.hours_worked}</th>
         <th>${row.timestamp}</th>
         <th>${row.gross_pay}</th>
-        <th><button onclick="deleteEmp(${row.employee_id})"><i class="bi bi-trash3-fill"></i></button></th>
+        <th><button  class="trash" onclick="deleteEmp(${row.employee_id})"><i class="bi bi-trash3-fill"></i></button></th>
         `
 
     tableBody.appendChild(employeeData)
@@ -69,6 +72,7 @@ const addEmployeePayroll = (e) => {
     employeeIdInput.value = ''
     hourlyWageInput.value = ''
     hoursWorkedInput.value = ''
+    closeBtn.click()
 };
 
 
@@ -125,10 +129,17 @@ doc.autoTable({
         minCellHeight: 15
     }
 });
-doc.save('table.pdf');
+doc.save('payroll.pdf');
 };
+
+
+const getNotification = () => {
+    window.alert("You've been subscribed to our newsletter!")
+}
 
 // eventlistener for rows with employees on payroll to show
 document.addEventListener('DOMContentLoaded', getPayroll);
 // eventlistener for new row when user adds a employee to payroll
 addEmployeeBtn.addEventListener('click', addEmployeePayroll);
+subBtn.addEventListener('click', getNotification);
+

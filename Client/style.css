@@ -45,3 +45,25 @@
 
 .footerBg{
 background-color: #f4f1de;}
+
+/* css for splash page */
+
+.splashNav {
+ background-color:white;
+}
+
+.splashMain {
+  background-color: #f4f1de;
+}
+
+.splashBg {
+  background-color: #495057;
+}
+
+#splashSignin {
+  margin: 1px;
+}
+
+.footerLogo {
+  width: 100%;
+}

@@ -8,6 +8,8 @@ const authLogIn = document.getElementById('logInBtn');
 const firstName = document.getElementById('firstName');
 const lastName = document.getElementById('lastName');
 const userName = document.getElementById('userName');
+const subBtn = document.getElementById('subBtn')
+
 // baseUrl so that i wouldn't type out the whole url every time
 const baseurl = 'http://localhost:4444'
 
@@ -71,3 +73,11 @@ const signUp = (body) => axios.post(`${baseurl}/register`, body)
         email.value = ''
         password.value = ''
     });
+
+
+    const getNotification = () => {
+        window.alert("You've been subscribed to our newsletter!")
+    }
+
+
+subBtn.addEventListener('click', getNotification);
