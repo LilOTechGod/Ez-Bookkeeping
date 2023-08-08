@@ -7,25 +7,25 @@
     <link rel="stylesheet" href="./style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
-<body class="homeBgColor">
+<body class="splashBg">
     <!-- navbar begins -->
     <header>
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand-lg splashNav">
             <div class="container-fluid">
-              <a class="navbar-brand" id="navTitle" href="#">Welcome to EZ Pay!</a>
+              <a class="navbar-brand"  href="#">Welcome to EZ Pay!</a>
               <button class="navbar-toggler" type="button" id="hamburgerBtn" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link active" id="navTitle" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active"  aria-current="page" href="#">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="navTitle" href="#">FAQ</a>
+                    <a class="nav-link"  href="#">FAQ</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="navTitle" href="#">Blog</a>
+                    <a class="nav-link"  href="#">Blog</a>
                   </li>
                 </ul>
               </div>
@@ -33,59 +33,67 @@
           </nav>
     </header>
     <!-- navbar ends -->
-    <br>
-    <br>
-    </br>
-    </br>
+
     <!-- main with buttons to go into different portals -->
-    <main>
+    <main class="splashMain">
+    <br>
         <div class="container text-center">
             <div class="row">
-              <div class="col-4 col-md-3  p-3 ">
-                <button class="btn btn-secondary" type="submit" value="Employee Portal" id="employeePortal">Employee Portal</button>
+              <div class="col-4 col-md-4  p-3 ">
+                <button class="btn btn-outline-primary
+                " type="submit" value="Employee Portal" id="employeePortal">Employee Portal</button>
               </div>
-              <div class="col-4 col-md-4"></div>
-              <div class="col-4 col-md-4"></div>
+              <div class="col-8 col-md-8">
+                <p>Keep Track of all your team members here. Typically general information of each member will be here.</p>
+              </div>
             </div>
             <br>
             <br>
             </br>
             </br>
             <div class="row">
-              <div class="col-4 col-md-4"></div>
-              <div class="col-4 col-md-3 p-3">
-                <button class="btn btn-secondary" type="submit" value="Payroll Portal" id="payrollPortal">Payroll Portal</button>
+              <div class="col-8 col-md-8">
+                <p>When it's payroll week, enter each member in the payroll portal along with there wage so that we may do all the math for you! Know exactly how much each members gross pay will be for the week or biweekly.</p>
               </div>
-              <div class="col-4 col-md-6"></div>
+              <div class="col-4 col-md-6">
+                <button class="btn btn-outline-primary
+                " type="submit" value="Payroll Portal" id="payrollPortal">Payroll Portal</button>
+              </div>
             </div>
             <br>
             <br>
             </br>
             </br>
             <div class="row">
-              <div class="col-4 col-md-4"></div>
-              <div class="col-4 col-md-4"></div>
-              <div class="col-4 col-md-3 p-3">
-                <button class="btn btn-secondary" type="submit" value="Manager Portal" id="payrollPortal">Manager Portal</button>
+              <div class="col-4 col-md-4  p-3 ">
+                <button class="btn btn-outline-primary
+                " type="submit" value="Manager Portal" id="ManagerPortal">Manger Portal</button>
               </div>
+              <div class="col-8 col-md-8">
+                <p>Have the ability to see all users/payroll manager that have access to your EZ Pay account and, make edits on each portal.</p>
+              </div>
+            </div>
             </div>
         </div>
+        <br>
     </main>
     <br>
             <br>
-            </br>
-            </br>
-            <div class="footerBg">
+            <div class="container">
               <footer class="py-5">
                 <div class="row d-flex justify-content-between">
                   <div class="col-6 col-md-2 mb-3">
-                    <h2 class="text-dark">EZ Pay</h2>
+                    <h2 class="text-light">EZ Pay</h2>
                     <ul class="nav flex-column">
-                      <li class="nav-item mb-2"><a href="./landingPage.html" class="nav-link p-0 text-dark">Home</a></li>
-                      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-dark">FAQs</a></li>
-                      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-dark">Blog</a></li>
+                      <li class="nav-item mb-2"><a href="./landingPage.html" class="nav-link p-0 text-light">Home</a></li>
+                      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">FAQs</a></li>
+                      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Blog</a></li>
                     </ul>
                   </div>
+
+                  <div class="col-6 col-md-2 mb-3">
+                    <img src="../Assets/My project-1.png" class="footerLogo" alt="EZPay Logo">
+                   </div>
                  
                   <div class="col-md-5 offset-md-1 mb-3">
                     <form>

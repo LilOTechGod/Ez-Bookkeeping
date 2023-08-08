@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body class="bgColor">
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+              <a class="navbar-brand" id="navTitle" href="#">EZ Pay</a>
+              <button class="navbar-toggler"  id="hamburgerBtn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="navTitle" aria-current="page" href="./landingPage.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="navTitle" href="#">FAQ</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="navTitle" href="#">Blog</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </header>
+
+    <main class="p-3 bg">
+        <table class="table table-striped-columns table-hover zima" id="employeeTable">
+            <thead>
+              <tr>
+                <th scope="col" id="columnTable">Manager Id</th>
+                <th scope="col" id="columnTable">First Name</th>
+                <th scope="col" id="columnTable">Last Name</th>
+                <th scope="col" id="columnTable">User Name</th>
+                <th scope="col" id="columnTable">Email</th>
+                <th scope="col" id="columnTable"></th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider table-dark" id="tableBody"></tbody>
+          </table>
+
+          <br>
+          <!-- start of add a employee to payroll -->
+
+       <!-- download to pdf file button -->
+       <button class="btn btn-outline-danger" id="getPDF">Export PDF</button>
+
+       <!-- button for excel sheet -->
+       <button class="btn btn-outline-success" id="export">Export to Excel</button>
+    
+
+       <br>
+       <br>
+
+        <!-- Modal -->
+        <div
+          class="modal fade modal-signin"
+          id="signin"
+          tabindex="-1"
+          aria-labelledby="signinLabel"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content rounded-4 shadow">
+              <div class="modal-header p-5 pb-4 border-bottom-0">
+                <h5 class="modal-title fw-bold mb-0" id="signinLabel">Fill Out All Fields To Add A New Employee</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                id="closeBtn">
+              </button>
+              </div>
+              <div class="modal-body p-5 pt-0">
+                <form class="">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="employeeId"
+                      class="form-control rounded-4"
+                      id="employeeId"
+                      placeholder="1 or 2 ?"
+                    />
+                    <label for="employeeId">Employees Id:</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="hourlyWage"
+                      class="form-control rounded-4"
+                      id="hourlyWage"
+                      placeholder="Hourly Wage"
+                    />
+                    <label for="hourlyWage">Hourly Wage:</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="hoursWorked"
+                      class="form-control rounded-4"
+                      id="hoursWorked"
+                      placeholder="Hours Worked"
+                    />
+                    <label for="hoursWorked">Hours Worked:</label>
+                  </div>
+                 
+                  <button
+                    class="w-100 mb-2 btn btn-lg rounded-4 btn-primary"
+                    type="submit"
+                    id="payrollSubmit">
+                    Add Employee
+                  </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--  -->
+    </main>
+
+
+ <div class="container">
+      <footer class="py-5">
+        <div class="row d-flex justify-content-between">
+          <div class="col-6 col-md-2 mb-3">
+            <h2 class="text-light">EZ Pay</h2>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a href="./landingPage.html" class="nav-link p-0 text-light">Home</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">FAQs</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Blog</a></li>
+            </ul>
+          </div>
+
+          <div class="col-6 col-md-2 mb-3">
+            <img src="../Assets/My project-1.png" class="footerLogo" alt="EZPay Logo">
+           </div>
+         
+          <div class="col-md-5 offset-md-1 mb-3">
+            <form>
+              <h5>Subscribe to our newsletter</h5>
+              <p>Monthly digest of what's new and exciting from us.</p>
+              <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                <label for="newsletter1" class="visually-hidden">Email address</label>
+                <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+                <button class="btn btn-dark" id="subBtn" type="button">Subscribe</button>
+              </div>
+            </form>
+          </div>
+        </div>
+    
+        <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+          <p>© 2023 EZ Pay, Inc. All rights reserved.</p>
+          <ul class="list-unstyled d-flex">
+            <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
+            <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
+            <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+
+
+    <script src="table2excel.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.2.3/jspdf.plugin.autotable.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./manager.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>

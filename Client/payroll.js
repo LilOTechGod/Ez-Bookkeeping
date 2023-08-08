@@ -12,6 +12,7 @@ const exportBtn = document.getElementById('export');
 const elem = document.getElementById('getPDF');
 // variable for subscribe button
 const subBtn = document.getElementById('subBtn')
+// variable to slick on x from modal pop up
 const closeBtn = document.getElementById('closeBtn');
 
 

@@ -136,5 +136,21 @@ module.exports = {
             return res.status(200).send(dbRes[0])
         })
         .catch(err => console.error(err))
+    },
+
+
+    deleteManager:(req, res) => {
+        const {id} = req.params
+        
+        sequelize.query(`
+            DELETE FROM users
+            WHERE users_id = ${id}
+            returning *;
+        `)
+        .then(dbRes => {
+            console.log("You've successfully deleted a manager");
+            return res.status(200).send(dbRes[0])
+        })
+        .catch(err => console.error(err))
     }
 }
