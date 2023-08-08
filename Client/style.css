@@ -2,8 +2,46 @@
     box-sizing: content-box;
   }
 
-  .formDisappear {
-    display: none;
+.bgColor {
+  background-color: #3d3d3db8;
+}
+
+.homeBgColor {
+  background:linear-gradient(white, #3d3d3db8);
+}
+
+#navTitle {
+    color: white;
   }
 
-  
+  #hamburgerBtn {
+    background-color:white;
+  }
+
+.navbar{
+  background-color: #3496b6;
+}
+
+.bg {
+  background-color:lightgrey;
+}
+
+.bi {
+  color: rgba(239, 0, 0, 0.937);
+}
+
+.trash{
+  border: none;
+  background: transparent;
+}
+
+.homepageBgColor {
+  background-color: #81b29a;
+}
+
+#employeeTable {
+  border: 3px solid black;
+}
+
+.footerBg{
+background-color: #f4f1de;}

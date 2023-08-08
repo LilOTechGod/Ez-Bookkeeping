@@ -13,49 +13,54 @@ const elem = document.getElementById('getPDF');
 const exportBtn = document.getElementById('export');
 //variable for making addemployee form disappear
 const empForm = document.getElementById('signin') 
+// variable for subscribe button
+const subBtn = document.getElementById('subBtn')
+const closeBtn = document.getElementById('closeBtn');
 
 
 // function to create a row in my table with the correct employee data
 const tableRow = (row) => {
     let employeeData = document.createElement('tr')
+    employeeData.classList.add('tableRowColor')
+    employeeData.style.backgroundColor = 'grey';
 
     employeeData.innerHTML = `
         <th scope="row">${row.employee_id}</th>
         <th>${row.managers_id}</th>
         <th id="editFirstName" onclick="editName(this,${row.employee_id})">${row.first_name}</th>
         <th>${row.last_name}</th>
-        <th><button onclick="deleteEmp(${row.employee_id})"><i class="bi bi-trash3-fill"></i></button></th>
+        <th><button  class="trash" onclick="deleteEmp(${row.employee_id})"><i class="bi bi-trash3-fill"></i></button></th>
         `
 
     tableBody.appendChild(employeeData)
 }
 
 
-const editElement = (element, id) => {
-    console.log(element.value, id)
-   const body = {
-    managers_id,
-    firstName: element.value,
-    last_name
-   }
+// const editElement = (element, id) => {
+//     console.log(element.value, id)
+//    const body = {
+//     managers_id,
+//     firstName: element.value,
+//     last_name
+//    }
 
-    axios.put(`${baseurl}/employee/${id}`, body)
-    .then(res => {
-        console.log(res.data)
-        getEmployees()
-    })
+//     axios.put(`${baseurl}/employee/${id}`, body)
+//     .then(res => {
+//         console.log(res.data)
+//         getEmployees()
+//     })
 
-}
+// }
 
 
-function editName(elem,id) {
-    const th = document.createElement('th');
-    console.log(elem)
+// function editName(elem,id) {
+//     const th = document.createElement('th');
+//     console.log(elem)
     
-    th.innerHTML= `
-    <input placeholder='New Name' type=''><button onclick="editElement(this.previousSibling,${id})">GO</button></input>`
-    elem.replaceWith(th)
-}
+//     th.innerHTML= `
+//     <input placeholder='New Name' type=''><button onclick="editElement(this.previousSibling,${id})">GO</button></input>`
+//     elem.replaceWith(th)
+// }
 
 
 // function to clear all rows incase manager makes an edit or deletes or adds a new employee
@@ -101,7 +106,7 @@ let addAEmployee = (e) => {
     managerInput.value = ''
     firstInput.value = ''
     lastInput.value = ''
-    empForm.classList.add("formDisappear");
+    closeBtn.click()
 };
 
 
@@ -160,8 +165,12 @@ exportBtn.addEventListener('click', function() {
     table2excel.export(document.querySelectorAll("table"));
 })
 
+const getNotification = () => {
+    window.alert("You've been subscribed to our newsletter!")
+}
+
 
 
 document.addEventListener("DOMContentLoaded", getEmployees);
 addEmployeeBtn.addEventListener('click', addAEmployee);
-
+subBtn.addEventListener('click', getNotification);
