@@ -9,6 +9,8 @@ const firstName = document.getElementById('firstName');
 const lastName = document.getElementById('lastName');
 const userName = document.getElementById('userName');
 const subBtn = document.getElementById('subBtn')
+// variable for price btn
+const priceBtn = document.getElementById('priceBtn')
 
 // baseUrl so that i wouldn't type out the whole url every time
 const baseurl = 'http://localhost:4444'
@@ -79,5 +81,10 @@ const signUp = (body) => axios.post(`${baseurl}/register`, body)
         window.alert("You've been subscribed to our newsletter!")
     }
 
+    const pricePage = () => {
+        window.location.href='./index.html';
+    }
+
 
 subBtn.addEventListener('click', getNotification);
+priceBtn.addEventListener('click', pricePage);

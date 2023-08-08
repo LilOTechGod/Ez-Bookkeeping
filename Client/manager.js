@@ -69,7 +69,7 @@ exportBtn.addEventListener('click', function() {
 elem.onclick = function () {
     var doc = new jsPDF();
     doc.autoTable({
-        html: '#payrollTable',
+        html: '#employeeTable',
         didDrawCell: function (data) {
             if (data.column.dataKey === 5 && data.cell.section === 'body') {
                 // doc.autoTable({

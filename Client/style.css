@@ -54,6 +54,8 @@ background-color: #f4f1de;}
 
 .splashMain {
   background-color: #f4f1de;
+  border-bottom: 6px solid white;
+
 }
 
 .splashBg {
@@ -61,11 +63,20 @@ background-color: #f4f1de;}
 }
 
 #splashSignin {
-  margin: 1px;
+  margin: 5px;
 }
 
 .footerLogo {
   width: 100%;
+}
+
+.splashBlog {
+  margin: 1rem;
+  padding-bottom:1rem;
+}
+
+.blogCard {
+  background-color: #f4f1de;
 }
 
 /* variables for landing page */
@@ -77,10 +88,10 @@ background-color: #f4f1de;}
 }
 
 .pricePage {
-  margin: 1rem;
   text-align: center;
-  /* border-top: 4px solid white; */
   padding: 2rem 0;
-  /* border-bottom: 4px solid white; */
   background-color: rgba(220, 220, 220, 0.887);
+  width: 90%;
+  margin-left: 3rem;
+  border: 5px solid white;
 }

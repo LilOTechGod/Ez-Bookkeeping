@@ -99,39 +99,40 @@ exportBtn.addEventListener('click', function() {
 
 // function for downloading pdf file.
 elem.onclick = function () {
-var doc = new jsPDF();
-doc.autoTable({
-    html: '#payrollTable',
-    didDrawCell: function (data) {
-        if (data.column.dataKey === 5 && data.cell.section === 'body') {
-            // doc.autoTable({
-            //     head: [["One", "Two", "Three", "Four"]],
-            //     body: [
-            //         ["1", "2", "3", "4"],
-            //         ["1", "2", "3", "4"],
-            //         ["1", "2", "3", "4"],
-            //         ["1", "2", "3", "4"]
-            //     ],
-            //     startY: data.cell.y + 2,
-            //     margin: {left: data.cell.x + data.cell.padding('left')},
-            //     tableWidth: 'wrap',
-            //     theme: 'grid',
-            //     styles: {
-            //         fontSize: 7,
-            //         cellPadding: 1,
-            //     }
-            // });
+    var doc = new jsPDF();
+    doc.autoTable({
+        html: '#employeeTable',
+        didDrawCell: function (data) {
+            if (data.column.dataKey === 5 && data.cell.section === 'body') {
+                // doc.autoTable({
+                //     head: [["One", "Two", "Three", "Four"]],
+                //     body: [
+                //         ["1", "2", "3", "4"],
+                //         ["1", "2", "3", "4"],
+                //         ["1", "2", "3", "4"],
+                //         ["1", "2", "3", "4"]
+                //     ],
+                //     startY: data.cell.y + 2,
+                //     margin: {left: data.cell.x + data.cell.padding('left')},
+                //     tableWidth: 'wrap',
+                //     theme: 'grid',
+                //     styles: {
+                //         fontSize: 7,
+                //         cellPadding: 1,
+                //     }
+                // });
+            }
+        },
+        columnStyles: {
+            5: {cellWidth: 40}
+        },
+        bodyStyles: {
+            minCellHeight: 15
         }
-    },
-    columnStyles: {
-        5: {cellWidth: 40}
-    },
-    bodyStyles: {
-        minCellHeight: 15
-    }
-});
-doc.save('payroll.pdf');
-};
+    });
+    doc.save('payroll.pdf');
+    };
+
 
 
 const getNotification = () => {
