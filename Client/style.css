@@ -67,3 +67,20 @@ background-color: #f4f1de;}
 .footerLogo {
   width: 100%;
 }
+
+/* variables for landing page */
+.landingDes {
+  font-family: sans-serif;
+  font-size: 19px;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.pricePage {
+  margin: 1rem;
+  text-align: center;
+  /* border-top: 4px solid white; */
+  padding: 2rem 0;
+  /* border-bottom: 4px solid white; */
+  background-color: rgba(220, 220, 220, 0.887);
+}
