@@ -37,4 +37,5 @@ app.delete('/deleteemployee/:id', deleteEmployee)
 app.delete('/deletepayroll/:id', deleteEmployeePayroll)
 app.delete('/deletemanager/:id', deleteManager)
 
-app.listen(SERVER_PORT, () => console.log(`Server is up and listening on ${SERVER_PORT}`))
+const port = SERVER_PORT || process.env.PORT
+app.listen(port, () => console.log(`Server is up and listening on ${port}`))
