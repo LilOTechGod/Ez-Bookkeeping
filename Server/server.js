@@ -12,7 +12,9 @@ const {login, register} = require('./controllers/auth.js')
 
 app.use(express.json());
 app.use(cors());
-
+app.use(express.static('Assets'))
+app.use(express.static('public'))
+app.use(express.static('assetsexample'))
 
 // TO SEED DB UN COMMENT, MAKE REQUEST THEN COMMENT POST REQUEST
 app.post('/seed', seed)
