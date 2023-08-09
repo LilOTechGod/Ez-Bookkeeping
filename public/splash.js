@@ -82,7 +82,7 @@ const signUp = (body) => axios.post(`${baseurl}/register`, body)
     }
 
     const pricePage = () => {
-        window.location.href='./index.html';
+        window.location.href='./pricing.html';
     }
 
 

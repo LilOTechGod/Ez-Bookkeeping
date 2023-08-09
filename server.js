@@ -3,11 +3,12 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const {SERVER_PORT} = process.env
-const {seed} = require('./seed.js')
+const {seed} = require('./Server/seed.js')
+const path = require('path')
 
 
-const {getAllManagers, getAllEmployee, getAllPayroll, addAEmployee, addPayroll,updateEmployee, updatePayroll, deleteEmployee, deleteEmployeePayroll, deleteManager} = require('./controllers/controllers.js')
-const {login, register} = require('./controllers/auth.js')
+const {getAllManagers, getAllEmployee, getAllPayroll, addAEmployee, addPayroll,updateEmployee, updatePayroll, deleteEmployee, deleteEmployeePayroll, deleteManager} = require('./Server/controllers/controllers.js')
+const {login, register} = require('./Server/controllers/auth.js')
 
 
 app.use(express.json());
@@ -15,6 +16,11 @@ app.use(cors());
 app.use(express.static('Assets'))
 app.use(express.static('public'))
 app.use(express.static('assetsexample'))
+
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname,'/public/splash.html'))
+} )
 
 // TO SEED DB UN COMMENT, MAKE REQUEST THEN COMMENT POST REQUEST
 app.post('/seed', seed)
