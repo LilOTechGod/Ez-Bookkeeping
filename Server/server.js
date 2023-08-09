@@ -3,15 +3,20 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const {SERVER_PORT} = process.env
-const {seed} = require('./Server/seed.js')
+const {seed} = require('./seed.js')
 
 
-const {getAllManagers, getAllEmployee, getAllPayroll, addAEmployee, addPayroll,updateEmployee, updatePayroll, deleteEmployee, deleteEmployeePayroll, deleteManager} = require('./Server/controllers/controllers.js')
-const {login, register} = require('./Server/controllers/auth.js')
+const {getAllManagers, getAllEmployee, getAllPayroll, addAEmployee, addPayroll,updateEmployee, updatePayroll, deleteEmployee, deleteEmployeePayroll, deleteManager} = require('./controllers/controllers.js')
+const {login, register} = require('./controllers/auth.js')
 
 
 app.use(express.json());
 app.use(cors());
+
+
+const getFavicon=(req, res) => {
+    res.sendStatus(200)
+}
 
 // TO SEED DB UN COMMENT, MAKE REQUEST THEN COMMENT POST REQUEST
 app.post('/seed', seed)
@@ -27,5 +32,6 @@ app.put('/updatepay/:id', updatePayroll)
 app.delete('/deleteemployee/:id', deleteEmployee)
 app.delete('/deletepayroll/:id', deleteEmployeePayroll)
 app.delete('/deletemanager/:id', deleteManager)
+app.get('/ico/favicon.ico', getFavicon)
 
 app.listen(SERVER_PORT, () => console.log(`Server is up and listening on ${SERVER_PORT}`))
