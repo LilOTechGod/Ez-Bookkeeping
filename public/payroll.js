@@ -1,4 +1,4 @@
-const baseurl = 'http://localhost:4444';
+// const baseurl = 'http://localhost:4444';
 // variable for the rows in my table
 const tableBody = document.getElementById('tableBody')
 // variables for add a new employee to payroll inputs
@@ -40,7 +40,7 @@ function clearEmployee() {
 // function to get every employee on payout
 let getPayroll = () => {
     clearEmployee();
-    axios.get(`${baseurl}/pay`)
+    axios.get(`/pay`)
         .then(res => {
             console.log(res.data)
             let employee = res.data;
@@ -63,7 +63,7 @@ const addEmployeePayroll = (e) => {
             hoursWorked: hoursWorkedInput.value
         };
 
-        axios.post(`${baseurl}/newpayroll`, body)
+        axios.post(`/newpayroll`, body)
             .then(res => {
                 console.log(res.data)
                 getPayroll()
@@ -80,7 +80,7 @@ const addEmployeePayroll = (e) => {
 
 // functions that deletes a employee
 const deleteEmp = (id) => {
-    axios.delete(`${baseurl}/deletepayroll/${id}`)
+    axios.delete(`/deletepayroll/${id}`)
     .then(res => {
         getPayroll();
         console.log(res.data)

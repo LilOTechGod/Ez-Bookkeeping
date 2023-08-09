@@ -13,11 +13,11 @@ const subBtn = document.getElementById('subBtn')
 const priceBtn = document.getElementById('priceBtn')
 
 // baseUrl so that i wouldn't type out the whole url every time
-const baseurl = 'http://localhost:4444'
+// const baseurl = 'http://localhost:4444'
 
 
 // axios request to /login endpoint so that cb function in auth could login in a user/manager
-const login = (body) => axios.post(`${baseurl}/login`, body)
+const login = (body) => axios.post(`/login`, body)
 .then((res) => {
     console.log(res.data);
     
@@ -29,7 +29,7 @@ const login = (body) => axios.post(`${baseurl}/login`, body)
 
 
 // axios request to /register endpoint so that cb function in auth could register a new user/manager
-const signUp = (body) => axios.post(`${baseurl}/register`, body)
+const signUp = (body) => axios.post(`/register`, body)
     .then((res) => {
         console.log(res.data);
 

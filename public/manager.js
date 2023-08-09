@@ -1,4 +1,4 @@
-const baseurl = 'http://localhost:4444';
+// const baseurl = 'http://localhost:4444';
 // variable for the rows in my table
 const tableBody = document.getElementById('tableBody')
 // variables for add a new manager to manager inputs
@@ -37,7 +37,7 @@ function clearEmployee() {
 // function to get every employee on payout
 let getManager = () => {
     clearEmployee();
-    axios.get(`${baseurl}/managers`)
+    axios.get(`/managers`)
         .then(res => {
             console.log(res.data)
             let employee = res.data;
@@ -50,7 +50,7 @@ let getManager = () => {
 
 // functions that deletes a employee
 const deleteEmp = (id) => {
-    axios.delete(`${baseurl}/deletemanager/${id}`)
+    axios.delete(`/deletemanager/${id}`)
     .then(res => {
         getManager();
         console.log(res.data)

@@ -1,4 +1,4 @@
-const baseurl = 'http://localhost:4444';
+// const baseurl = 'http://localhost:4444';
 // variable to append thead to it after i create a row or column
 const employeeTable = document.getElementById('employeeTable')
 const tableBody = document.getElementById('tableBody')
@@ -44,7 +44,7 @@ const tableRow = (row) => {
 //     last_name
 //    }
 
-//     axios.put(`${baseurl}/employee/${id}`, body)
+//     axios.put(`/employee/${id}`, body)
 //     .then(res => {
 //         console.log(res.data)
 //         getEmployees()
@@ -72,7 +72,7 @@ function clearEmployee() {
 // function that clears all employee rows then grabs all employees and makes a row for every single one
 let getEmployees = () => {
     clearEmployee();
-    axios.get(`${baseurl}/home`)
+    axios.get(`/home`)
     .then(res => {
         console.log(res.data)
         let employee = res.data;
@@ -96,7 +96,7 @@ let addAEmployee = (e) => {
     };
 
     // console.log(managerInput, firstInput, lastInput);
-    axios.post(`${baseurl}/newemployee`, body)
+    axios.post(`/newemployee`, body)
     .then(res => {
         getEmployees();
         console.log(res.data);
@@ -112,7 +112,7 @@ let addAEmployee = (e) => {
 
 // functions that deletes a employee
 const deleteEmp = (id) => {
-    axios.delete(`${baseurl}/deleteemployee/${id}`)
+    axios.delete(`/deleteemployee/${id}`)
     .then(res => {
         getEmployees();
         console.log(res.data)
