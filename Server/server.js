@@ -19,7 +19,7 @@ app.use(express.static('assetsexample'))
 
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname,'../public/splash.html'))
+    res.sendFile(path.join(__dirname,'../public/index.html'))
 } )
 
 // TO SEED DB UN COMMENT, MAKE REQUEST THEN COMMENT POST REQUEST
