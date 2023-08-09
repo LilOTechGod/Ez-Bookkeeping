@@ -3,11 +3,11 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const {SERVER_PORT} = process.env
-const {seed} = require('./seed.js')
-const bcrypt = require('bcrypt');
+const {seed} = require('./Server/seed.js')
 
-const {getAllManagers, getAllEmployee, getAllPayroll, addAEmployee, addPayroll,updateEmployee, updatePayroll, deleteEmployee, deleteEmployeePayroll, deleteManager} = require('./controllers/controllers.js')
-const {login, register} = require('./controllers/auth')
+
+const {getAllManagers, getAllEmployee, getAllPayroll, addAEmployee, addPayroll,updateEmployee, updatePayroll, deleteEmployee, deleteEmployeePayroll, deleteManager} = require('./Server/controllers/controllers.js')
+const {login, register} = require('./Server/controllers/auth.js')
 
 
 app.use(express.json());
