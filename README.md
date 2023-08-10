@@ -7,12 +7,13 @@
 ## Table of Contents
 
 - [Installation](#installation)
-- [User Story](#userstory)
+- [User Story](#userStory)
 - [Credits](#credits)
 - [License](#license)
 
 
-![Demo video of ez bookkeeping.](https://drive.google.com/file/d/1i3W4M36F-VJ2LugxNLlowL46Hon5ZUq1/view)
+## Demo video of ez bookkeeping.
+https://github.com/LilOTechGod/Ez-Bookkeeping/assets/112797175/71c01a9b-8248-455d-95b3-ac4055136e27
 
 ## Installation 
 
