@@ -2,7 +2,7 @@
 
 ## A business has to keep financial records of weekly or biweekly transactions, which is part of their accounting process. Many business owners aren't financial advisors, therefore EZ Bookkeeping is a solution for small organizations to do just that. Record and organize financial data of the weekly or biweekly financial transactions of your business. The name speaks for it's self, very easy to use, very straight forward, with an amazing UI interface. Try Ez Bookkeeping today! And ease your mind by knowing that your keeping track of important records and are ready to present incase you have too. Give back to the community by sending me an idea that I show implement into the app. If you have any questions, check out or blog or FAQ. 
 
-## Deployed link [here](https://ez-bookkeeping-57eaced69b66.herokuapp.com/).
+### Deployed link [here](https://ez-bookkeeping-57eaced69b66.herokuapp.com/).
 
 ## Table of Contents
 
